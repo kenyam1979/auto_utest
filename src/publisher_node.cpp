@@ -20,13 +20,13 @@ void PublisherNode::publish_message(float value)
   auto message = std_msgs::msg::Float32();
 
   if (value > 0.0) {
-    RCLCPP_INFO(this->get_logger(), "Publishing: '%f'", value);
+    RCLCPP_INFO(this->get_logger(), "Publishing positive value: '%f'", value);
     message.data = value;
   } else if (value < 0.0) {
-    RCLCPP_INFO(this->get_logger(), "Publishing: '%f'", value);
+    RCLCPP_INFO(this->get_logger(), "Publishing negative value: '%f'", value);
     message.data = value;
   } else {
-    RCLCPP_INFO(this->get_logger(), "Publishing: '%f'", value);
+    RCLCPP_INFO(this->get_logger(), "Publishing zero: '%f'", value);
     message.data = 0.0;
   }
   publisher_->publish(message);
