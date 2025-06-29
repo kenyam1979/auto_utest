@@ -2,9 +2,9 @@ name: build and test
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * *'
@@ -62,8 +62,8 @@ jobs:
         id: run_test
         run: |
           . /opt/ros/${{ matrix.rosdistro }}/setup.sh &&
-          colcon test && 
-          colcon test-result --verbose
+          colcon colcon test --event-handlers console_cohesion+ && 
+          colcon test-result
         continue-on-error: true
 
       - name: run_test command success
