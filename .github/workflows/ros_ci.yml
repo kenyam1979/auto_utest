@@ -62,7 +62,7 @@ jobs:
         id: run_test
         run: |
           . /opt/ros/${{ matrix.rosdistro }}/setup.sh &&
-          colcon colcon test --event-handlers console_cohesion+ && 
+          colcon test --event-handlers console_cohesion+ && 
           colcon test-result
         continue-on-error: true
 
