@@ -12,10 +12,10 @@ namespace auto_utest
 PublisherNode::PublisherNode()
 : Node("publisher_node")
 {
-  publisher_ = this->create_publisher<std_msgs::msg::Float32>("topic", 10);
+  publisher_ = this->create_publisher<std_msgs::msg::Float32>("float_topic", 10);
 }
 
-void PublisherNode::publish_message(float value)
+void PublisherNode::publishMessage(float value)
 {
   auto message = std_msgs::msg::Float32();
 

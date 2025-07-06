@@ -22,12 +22,13 @@ public:
 
   void test_publish_message(float value)
   {
-    publish_message(value);
+    publishMessage(value);
     last_published_value_ = value;
   }
 };
 
-TEST(PublisherNodeTest, UnitTesting0) {
+// 1. Test positive value
+TEST(PublisherNodeTest, PositiveValue) {
   int argc = 0;
   char ** argv = nullptr;
   rclcpp::init(argc, argv);
@@ -38,11 +39,31 @@ TEST(PublisherNodeTest, UnitTesting0) {
   node->test_publish_message(5.0f);
   EXPECT_EQ(node->last_published_value_, 5.0f);
 
-  // Test negative value
-  // node->test_publish_message(-3.0f);
-  // EXPECT_EQ(node->last_published_value_, -3.0f);
+  rclcpp::shutdown();
+}
 
-  // Test zero value
+// 2. Test negative value
+TEST(PublisherNodeTest, NegativeValue) {
+  int argc = 0;
+  char ** argv = nullptr;
+  rclcpp::init(argc, argv);
+
+  auto node = std::make_shared<PublisherNodeTest>();
+
+  node->test_publish_message(-3.0f);
+  EXPECT_EQ(node->last_published_value_, -3.0f);
+
+  rclcpp::shutdown();
+}
+
+// 3. Test zero value
+TEST(PublisherNodeTest, ZeroValue) {
+  int argc = 0;
+  char ** argv = nullptr;
+  rclcpp::init(argc, argv);
+
+  auto node = std::make_shared<PublisherNodeTest>();
+
   node->test_publish_message(0.0f);
   EXPECT_EQ(node->last_published_value_, 0.0f);
 

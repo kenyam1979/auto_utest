@@ -17,7 +17,7 @@ class PublisherNode : public rclcpp::Node
 {
 public:
   PublisherNode();
-  void publish_message(float data);
+  void publishMessage(float data);
 
 private:
   rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr publisher_;
